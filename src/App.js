@@ -15,8 +15,6 @@ const App = () => {
   const [newPhone, setNewPhone] = useState('');
   const [filter, setFilter] = useState('');
 
-  console.log(persons);
-
   useEffect(() => {
     personsService
       .getAll()
