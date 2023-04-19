@@ -15,6 +15,8 @@ const App = () => {
   const [newPhone, setNewPhone] = useState('');
   const [filter, setFilter] = useState('');
 
+  console.log(persons);
+
   useEffect(() => {
     personsService
       .getAll()
@@ -32,12 +34,12 @@ const App = () => {
     });
   };
 
-  const personNames = persons.map((person) => (
+  const personNames = persons?.map((person) => (
     <PersonInfo handleDelete={handleDelete} key={person.id} person={person} />
   ));
 
   const filteredPersonNames = persons
-    .filter((person) => person.name.includes(filter))
+    ?.filter((person) => person.name.includes(filter))
     .map((person) => (
       <PersonInfo handleDelete={handleDelete} key={person.id} person={person} />
     ));
@@ -66,7 +68,7 @@ const App = () => {
     } else {
       const personObject = {
         name: newName,
-        phone: newPhone,
+        number: newPhone,
       };
 
       personsService
@@ -105,6 +107,7 @@ const App = () => {
             type="tel"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             value={newPhone}
+            required
             onChange={(event) => setNewPhone(event.target.value)}
           />
         </div>
