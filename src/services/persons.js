@@ -6,7 +6,7 @@ const getAll = () => {
   return request
     .then((response) => response.data)
     .catch((error) => {
-      console.log(error);
+      console.log(error.response.data.error);
     });
 };
 
@@ -15,7 +15,7 @@ const create = (newObject) => {
   return request
     .then((response) => response.data)
     .catch((error) => {
-      console.log(error);
+      console.log(error.response.data.error);
     });
 };
 
@@ -24,7 +24,7 @@ const deletePerson = (id) => {
   return request
     .then((response) => response.data)
     .catch((error) => {
-      console.log(error);
+      console.log(error.response.data.error);
     });
 };
 
@@ -33,7 +33,7 @@ const update = (id, newObject) => {
   return request
     .then((response) => response.data)
     .catch((error) => {
-      console.log(error);
+      console.log(error.response.data.error);
     });
 };
 

@@ -15,6 +15,8 @@ const App = () => {
   const [newPhone, setNewPhone] = useState('');
   const [filter, setFilter] = useState('');
 
+  console.log(persons);
+
   useEffect(() => {
     personsService
       .getAll()
@@ -33,7 +35,7 @@ const App = () => {
   };
 
   const personNames = persons?.map((person) => (
-    <PersonInfo handleDelete={handleDelete} key={person.id} person={person} />
+    <PersonInfo handleDelete={handleDelete} key={person?.id} person={person} />
   ));
 
   const filteredPersonNames = persons
@@ -69,9 +71,11 @@ const App = () => {
         number: newPhone,
       };
 
-      personsService
-        .create(personObject)
-        .then((returnedPerson) => setPersons(persons.concat(returnedPerson)));
+      personsService.create(personObject).then((returnedPerson) => {
+        if (returnedPerson) {
+          setPersons(persons.concat(returnedPerson));
+        }
+      });
     }
 
     setNewName('');
